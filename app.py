@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, render_template, request, jsonify
 import pickle
 import pandas as pd
 import plotly.express as px
@@ -11,16 +11,18 @@ import base64
 
 app = Flask(__name__)
 
-# Load models
-with open(r'C:\Users\hp\Downloads\flask\models\logistic_regression_model.pkl', 'rb') as f:
+# Load logistic regression model
+with open('models/logistic_regression_model.pkl', 'rb') as f:
     logistic_model = pickle.load(f)
 
-with open(r'C:\Users\hp\Downloads\flask\models\deployment_plan.pkl', 'rb') as file:
+# Load deployment plan
+with open('models/deployment_plan.pkl', 'rb') as file:
     deployment_plan = pickle.load(file)
 centroids = {key: value['cluster_centroid'] for key, value in deployment_plan.items()}
 
+# Function to load crime data
 def load_crime_data():
-    pickle_path = r'C:\Users\hp\Downloads\flask\models\predicted_crime.pkl'
+    pickle_path = 'models/predicted_crime.pkl'
     if os.path.exists(pickle_path):
         try:
             data = joblib.load(pickle_path)
@@ -33,14 +35,16 @@ def load_crime_data():
             raise KeyError("Expected keys ('predicted_df_2025', 'predicted_df_2026') not found in data.")
     else:
         raise FileNotFoundError("Pickle file 'predicted_crime.pkl' not found.")
+
 try:
     crime_data = load_crime_data()
 except (FileNotFoundError, KeyError, ImportError) as e:
     crime_data = None
     print(f"Error loading data: {e}")
 
+# Function to load ARIMA model
 def load_arima_model():
-    pickle_path = r"C:\Users\hp\Downloads\flask\models\arima_model.pkl"
+    pickle_path = 'models/arima_model.pkl'
     if not os.path.exists(pickle_path):
         raise FileNotFoundError(f"File not found: {pickle_path}")
     with open(pickle_path, 'rb') as f:
@@ -181,14 +185,11 @@ def crime_prediction():
             year_selected = int(year_selected)
             if year_selected == 2025:
                 predicted_df = crime_data['predicted_df_2025']
-                start_date = '2025-01-01'
-                steps = 12
             elif year_selected == 2026:
                 predicted_df = crime_data['predicted_df_2026']
-                start_date = '2026-01-01'
-                steps = 24
             else:
                 return render_template('crime_prediction.html', graph=None, error="Invalid year selected")
+
             predicted_df_long = predicted_df.melt(
                 id_vars='CrimeGroup_Name', var_name='Month', value_name='Predicted_Count'
             )
@@ -234,3 +235,5 @@ def future_crime_forecast():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+           
