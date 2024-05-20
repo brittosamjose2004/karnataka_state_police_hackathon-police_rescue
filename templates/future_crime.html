@@ -239,7 +239,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
          function goBack() {
-            window.location.href = 'http://127.0.0.1:5000/index';
+            window.location.href = 'https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/index';
         }
         document.addEventListener("DOMContentLoaded", function() {
             // Bar Chart
@@ -324,7 +324,7 @@
                     labels: ['Bengalurucity', 'Mandya', 'Shivamogga', 'Bagalkot', 'Tumakuru', 'Mysuru'],
                     datasets: [{
                         label: 'Crimes Solved',
-                        data: [100, -20, 10, -10, 30, 110],
+                        data: [60, , 25, 30, 35, 10],
                         backgroundColor: 'rgba(75, 192, 192, 0.8)',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
@@ -349,26 +349,42 @@
             // Radar Chart
             const radarCtx = document.getElementById('radarChart').getContext('2d');
             new Chart(radarCtx, {
-                type: 'radar',
-                data: {
-                    labels: ['Cyber Crime', 'Violent Crime', 'Sexual Harassment', 'Rape', 'Kidnapping', 'Property', 'Fraud'],
-                    datasets: [{
-                        label: 'Crime Rate Radar',
-                        data: [2300, 1000, 1000, 624, 500, 431, 430],
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        r: {
-                            beginAtZero: true
-                        }
+                type: 'bar',
+            data: {
+                labels: ['Cyber Crime', 'Violent Crime', 'Sexual Harassment', 'Rape', 'Kidnapping', 'Property', 'Fraud'],
+                datasets: [{
+                    label: 'Crime Rate',
+                    data: [2300, 1000, 1000, 624, 500, 431, 430],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(201, 203, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
                     }
                 }
-            });
+            }
+        });
     </script>
 </body>
 </html>
