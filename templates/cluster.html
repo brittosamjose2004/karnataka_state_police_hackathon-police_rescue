@@ -244,7 +244,11 @@
                 <center>
                 <div class="chart">
                     <!-- Inserted iframe in place of the original chart -->
+<<<<<<< HEAD
                     <iframe src="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/Bengaluru_district" style="width:100%; height:100%; border:none;"></iframe>
+=======
+                    <iframe src="http://127.0.0.1:5000/forecast_crime" style="width:100%; height:100%; border:none;"></iframe>
+>>>>>>> 05c955ee44f22a691fee7db77f7b7b4176354dd4
                 </div> </center>
                 
             </div>
@@ -267,26 +271,37 @@
             const radarCtx = document.getElementById('radarChart').getContext('2d');
             new Chart(radarCtx, {
                 type: 'radar',
-                data: {
-                    labels: ['Cyber Crime', 'Violent Crime', 'Sexual Harassment', 'Rape', 'Kidnapping', 'Property', 'Fraud'],
-                    datasets: [{
-                        label: 'Crime Rate Radar',
-                        data: [2300, 1000, 1000, 624, 500, 431, 430],
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        r: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-
+                type: 'pie',
+            data: {
+                labels: ['accident non-fatal', 'Theft', 'CrPc', 'Cases of hurd', 'Missing persion'],
+                datasets: [{
+                    label: 'Crime Rate',
+                    data: [6500, 6000,5600 , 4900, 3200, 2500,],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(201, 203, 207, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
             
         });
     </script>

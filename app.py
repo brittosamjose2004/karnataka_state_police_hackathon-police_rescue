@@ -234,6 +234,7 @@ def future_crime_forecast():
     return render_template('future_crime.html', forecast_plot=forecast_plot, forecast_results=forecast_results, future_steps=future_steps)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)
+    app.run(host='0.0.0.0', port=8000)
+
 
            

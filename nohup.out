@@ -1,0 +1,26 @@
+ * Serving Flask app 'app' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.16.5.4:8000/ (Press CTRL+C to quit)
+127.0.0.1 - - [20/May/2024 13:41:31] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:41:32] "GET /static/videos/crime.avif HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:41:32] "GET /static/images/logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:41:32] "GET /static/videos/crime_login.mp4 HTTP/1.1" 206 -
+127.0.0.1 - - [20/May/2024 13:41:32] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [20/May/2024 13:41:42] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:41:42] "GET /static/videos/crime.avif HTTP/1.1" 304 -
+127.0.0.1 - - [20/May/2024 13:41:42] "GET /static/images/logo.png HTTP/1.1" 304 -
+127.0.0.1 - - [20/May/2024 13:45:10] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:45:10] "GET /static/images/logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:45:11] "GET /static/videos/crime.avif HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:45:11] "GET /static/videos/crime_login.mp4 HTTP/1.1" 206 -
+127.0.0.1 - - [20/May/2024 13:45:11] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [20/May/2024 13:47:21] "GET /favicon.ico HTTP/1.1" 404 -
+127.0.0.1 - - [20/May/2024 13:47:27] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:47:27] "GET /static/videos/crime.avif HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:47:28] "GET /static/images/logo.png HTTP/1.1" 200 -
+127.0.0.1 - - [20/May/2024 13:47:28] "GET /static/videos/crime_login.mp4 HTTP/1.1" 206 -
