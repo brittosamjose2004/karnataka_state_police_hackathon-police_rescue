@@ -7,3 +7,4 @@ joblib==1.1.0
 scikit-learn==1.0.2
 statsmodels==0.13.2
 werkzeug==2.0.3
+gunicorn==20.1.0
