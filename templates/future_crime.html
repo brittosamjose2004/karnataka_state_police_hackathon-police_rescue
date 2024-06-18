@@ -26,7 +26,7 @@
         }
 
         .sidebar h2, .sidebar h1, .sidebar label {
-            color: #1E90FF; /* Changed color */
+            color: #1E90FF;
         }
 
         .sidebar form {
@@ -45,7 +45,7 @@
         }
 
         .sidebar .btn-primary {
-            background-color: #1E90FF; /* Changed color */
+            background-color: #1E90FF;
             border: none;
             width: 100%;
         }
@@ -57,14 +57,7 @@
         }
 
         .header h1 {
-            color: #1E90FF; /* Changed color */
-        }
-
-          .sidebar .btn-back {
-            background-color: #FF4747;
-            border: none;
-            width: 100%;
-            margin-bottom: 20px;
+            color: #1E90FF;
         }
 
         .content {
@@ -78,8 +71,8 @@
             padding: 20px;
             border-radius: 8px;
             box-sizing: border-box;
-            width: calc(50% - 10px); /* Adjusted to fit two charts in a row */
-            height: 300px; /* Reduced height */
+            width: calc(50% - 10px);
+            height: 300px;
         }
 
         .pie-charts {
@@ -94,8 +87,8 @@
             padding: 20px;
             border-radius: 8px;
             box-sizing: border-box;
-            width: calc(50% - 10px); /* Adjusted to fit two charts in a row */
-            height: 300px; /* Reduced height */
+            width: calc(50% - 10px);
+            height: 300px;
         }
 
         .live-data {
@@ -104,7 +97,7 @@
             border-radius: 8px;
             box-sizing: border-box;
             width: 100%;
-            height: 300px; /* Reduced height */
+            height: 400px;
             margin-bottom: 20px;
         }
 
@@ -118,12 +111,12 @@
         }
 
         .statistics h3 {
-            color: #1E90FF; /* Changed color */
+            color: #1E90FF;
             margin: 10px 0;
         }
 
         .statistics p {
-            color: #1E90FF; /* Changed color */
+            color: #1E90FF;
         }
 
         .forecast-container {
@@ -144,7 +137,7 @@
         }
 
         .forecast h2 {
-            color: #1E90FF; /* Changed color */
+            color: #1E90FF;
         }
 
         .forecast img {
@@ -162,17 +155,15 @@
         }
 
         canvas {
-            height: 100% !important; /* Ensures the canvas elements take the full height of their container */
+            height: 100% !important;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="sidebar">
-            <button class="btn-back" onclick="goBack()">Back</button>
             <h2>Dashboard</h2>
             <h1>Future Crime Pattern Prediction</h1>
-            <!-- Form to input forecasting details -->
             <form method="post">
                 <div class="form-group">
                     <label for="future_steps">Enter number of months to forecast:</label>
@@ -184,7 +175,6 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Forecast</button>
             </form>
-            <!-- Forecasted Values Result -->
             <div class="forecasted-values">
                 <h2>Forecasted Values</h2>
                 {% if forecast_results %}
@@ -202,13 +192,14 @@
             </div>
             <div class="content">
                 <div class="chart">
+                    
                     <canvas id="barChart"></canvas>
                 </div>
                 <div class="chart">
+                    
                     <canvas id="crimeRateChart"></canvas>
                 </div>
                 <div class="forecast-container">
-                    <!-- Forecast result section -->
                     <div class="forecast">
                         <h2>Forecast Plot</h2>
                         {% if forecast_plot %}
@@ -217,20 +208,23 @@
                     </div>
                 </div>
                 <div class="chart">
+                   
                     <canvas id="waterfallChart"></canvas>
                 </div>
                 <div class="chart">
-                    <canvas id="radarChart"></canvas>
+                    
+                    <canvas id="myBubbleChart"></canvas>
                 </div>
                 <div class="live-data">
-                    <canvas id="liveDataChart"></canvas>
+                    
+                    <canvas id="polarChart"></canvas>
                 </div>
                 <div class="statistics">
-                    <h3>Live Data</h3>
-                    <p>A Murder every min</p>
-                    <p>A Suicide every 40 sec</p>
-                    <p>7812 Sexual Assaults every day</p>
-                    <p>More than 100,000 pending rape cases in India. Close to 90 Rapes are reported every day in India.</p>
+                    <h3>Crime Data</h3>
+                    <p>As State Capital Bengaluru often faces Cyber Crime due to its thriving IT sector. It also witnesses a significant number of thefts, robberies, and cases of violence, partly attributed to its large population and diverse demographics</p>
+                    <p>Shivamogga faces challenges related to both urban and rural crimes. The district has witnessed instances of organized crime, including illegal mining activities, which have been a subject of concern. Additionally, crimes like theft, burglary, and occasional instances of communal tension are reported</p>
+                    <p>Drug Trafficking and Distribution in Karnataka, particularly urban centers like Bengaluru, serves as a transit point for drug trafficking due to its strategic location and connectivity. The state's well-developed transportation network facilitates the movement of illicit substances, including heroin, cocaine, MDMA (ecstasy), and synthetic drugs</p>
+                    <p>Mandya, primarily an agricultural region, contends with issues such as property disputes, theft of agricultural produce, and occasional incidents of farmer distress leading to protests and unrest. The district's agrarian economy and socio-political dynamics influence the nature and frequency of reported crimes.</p>
                 </div>
             </div>
         </div>
@@ -238,19 +232,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-         function goBack() {
-            window.location.href = 'https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/index';
-        }
         document.addEventListener("DOMContentLoaded", function() {
             // Bar Chart
             const barCtx = document.getElementById('barChart').getContext('2d');
             new Chart(barCtx, {
                 type: 'bar',
                 data: {
-                    labels: ['Cyber Crime', 'Violent Crime', 'Sexual Harassment', 'Rape', 'Kidnapping', 'Property', 'Fraud', 'Childhood Abuse', 'Robbery', 'Under Age Activities'],
+                    labels: ['Bengaluru City', 'Bengaluru Dist', 'Tumakuru', 'Mandya', 'Ramanagara', 'Hassan', 'Shivamogga', 'Mysuru Dist', 'Belgavi Dist', 'Chitradurga'],
                     datasets: [{
-                        label: 'Crime Analysis 2003-2018',
-                        data: [2300, 1000, 1000, 624, 500, 431, 430, 355, 329.5, 246.5],
+                        label: 'Top 10 pending cases - City wise',
+                        data: [105647, 25563, 21364, 20700, 19677, 19062, 17608, 16932, 16595, 15734],
                         backgroundColor: [
                             '#00BFFF', '#7CFC00', '#FF69B4', '#FF4500', '#FFD700', '#ADFF2F', '#00FFFF', '#BA55D3', '#32CD32', '#FF6347'
                         ],
@@ -269,79 +260,168 @@
                 }
             });
 
-            // Crime Rate Pie Chart
+            // Crime Rate Chart (Pie Chart)
             const crimeRateCtx = document.getElementById('crimeRateChart').getContext('2d');
             new Chart(crimeRateCtx, {
                 type: 'pie',
                 data: {
-                    labels: ['Bengaluru City ', 'Bengaluru District', 'Tumakuru', 'Shivamogga', 'Mandya', 'Bagalkot'],
+                    labels: ['Bengaluru City', 'Bengaluru District', 'Tumakuru', 'Shivamogga', 'Mandya'],
                     datasets: [{
                         label: 'Crime Rate',
-                        data: [23.2, 20.5, 14.7, 17.8, 12.4, 11.4],
+                        data: [4305754, 65032, 62520, 620427,60297],
                         backgroundColor: [
                             'rgba(75, 192, 192, 0.8)',
                             'rgba(153, 102, 255, 0.8)',
                             'rgba(255, 159, 64, 0.8)',
                             'rgba(255, 206, 86, 0.8)',
                             'rgba(54, 162, 235, 0.8)',
-                            'rgba(255, 99, 132, 0.8)'
-                        ]
+                        ],
+                        borderColor: [
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 99, 132, 1)'
+                        ],
+                        borderWidth: 1
                     }]
-                },
-                options: {
-                    responsive: true
                 }
             });
 
-            // Live Data Chart
-            const liveDataCtx = document.getElementById('liveDataChart').getContext('2d');
-            new Chart(liveDataCtx, {
-                type: 'line',
+            // Bubble Chart - Crime Rate Comparison
+            const bubbleCtx = document.getElementById('myBubbleChart').getContext('2d');
+            new Chart(bubbleCtx, {
+                type: 'bubble',
                 data: {
-                    labels: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00'],
                     datasets: [{
-                        label: 'Live Data',
-                        data: [10, 20, 30, 25, 20, 15, 10, 15, 20, 25, 30, 35],
-                        backgroundColor: 'rgba(255, 71, 71, 0.2)',
-                        borderColor: 'rgba(255, 71, 71, 1)',
+                        label: 'Crime Rate Comparison',
+                        data: [
+                            { x: 5, y: 488630, r: 25, label: 'Bengaluru City' },
+                            { x: 6, y: 142096, r: 19, label: 'Belgavi Dist' },
+                            { x: 1, y: 121771, r: 17, label: 'Mandya' },
+                            { x: 7, y: 121581, r: 15, label: 'Shivamogga' },
+                            { x: 3, y: 111045, r: 13, label: 'Tumakkuru' },
+                            { x: 2, y: 105961, r: 11, label: 'Mysuru Dist'},
+                            { x: 4, y: 100683, r: 9, label: 'Hassan' }
+                        ],
+                        backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                        borderColor: 'rgba(153, 102, 255, 1)',
                         borderWidth: 1
                     }]
                 },
                 options: {
                     scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'District Index'
+                            },
+                            ticks: {
+                                stepSize: 1,
+                                callback: function(value, index, values) {
+                                    const labels = ['Mandya', 'Mysuru Dist', 'Tumakkuru', 'Hassan', 'Bengaluru City', 'Belgavi Dist','Shivamogga'];
+                                    return labels[value - 1];
+                                }
+                            }
+                        },
                         y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        });
-        // Waterfall Chart
-            const crimessolved = document.getElementById('waterfallChart').getContext('2d');
-            new Chart(crimessolved, {
-                type: 'bar',
-                data: {
-                    labels: ['Bengalurucity', 'Mandya', 'Shivamogga', 'Bagalkot', 'Tumakuru', 'Mysuru'],
-                    datasets: [{
-                        label: 'Crimes Solved',
-<<<<<<< HEAD
-                        data: [60, , 25, 30, 35, 10],
-=======
-                        data: [60,50 , 40, 30, 35, 10],
->>>>>>> 05c955ee44f22a691fee7db77f7b7b4176354dd4
-                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    plugins: {
-                        datalabels: {
-                            display: true,
-                            color: 'black',
-                            align: 'top'
-                        }
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Crime Rate'
+                            }
+                        }   
                     },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.raw.label || '';
+                                    return label + ': (' + context.raw.x + ', ' + context.raw.y + ')';
+                                }
+                            }
+                        }
+                    }
+                }   
+            });
+
+            // Bubble Chart - Most Crime Committed Person
+            const waterfallCtx = document.getElementById('waterfallChart').getContext('2d');
+            new Chart(waterfallCtx, {
+                type: 'bubble',
+                data: {
+                    datasets: [{
+                        label: 'Most Crime Committed Person',
+                        data: [
+                            { x: 1, y: 19801, r: 25, label: 'Manjunatha' },
+                            { x: 3, y: 10722, r: 21, label: 'Ravi' },
+                            { x: 4, y: 4701 , r: 19, label: 'Ramesh' },
+                            { x: 5, y: 4687, r: 17, label: 'Nagaraju' },
+                            { x: 6, y: 4528, r: 15, label: 'Nagaraja' },
+                            {x: 2, y: 34268, r: 28, label: 'Others' }
+                        ],
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Person Index'
+                            },
+                            ticks: {
+                                stepSize: 1,
+                                callback: function(value, index, values) {
+                                    const labels = ['Manjunatha', 'Others', 'Ravi', 'Ramesh', 'Nagaraju','Nagaraja'];
+                                    return labels[value - 1];
+                                }
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Crime Count'
+                            }
+                        }   
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.raw.label || '';
+                                    return label + ': (' + context.raw.x + ', ' + context.raw.y + ')';
+                                }
+                            }
+                        }
+                    }
+                }   
+            });
+
+            // Polar Chart
+            const polarCtx = document.getElementById('polarChart').getContext('2d');
+            new Chart(polarCtx, {
+                type: 'polarArea',
+                data: {
+                    datasets: [{
+                        label: 'Top 10 crime head names',
+                        data: [133881,116152,106826,84259,80359,79447,78501,77822,60577,52619],
+                        backgroundColor: [
+                            '#00BFFF', '#7CFC00', '#FF69B4', '#FF4500', '#FFD700', '#ADFF2F', '#00FFFF', '#BA55D3', '#32CD32', '#FF6347'
+                        ],
+                        borderColor: [
+                            '#00BFFF', '#7CFC00', '#FF69B4', '#FF4500', '#FFD700', '#ADFF2F', '#00FFFF', '#BA55D3', '#32CD32', '#FF6347'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
                     scales: {
                         y: {
                             beginAtZero: true
@@ -349,52 +429,6 @@
                     }
                 }
             });
-
-            // Radar Chart
-            const radarCtx = document.getElementById('radarChart').getContext('2d');
-            new Chart(radarCtx, {
-                type: 'bar',
-            data: {
-<<<<<<< HEAD
-                labels: ['Cyber Crime', 'Violent Crime', 'Sexual Harassment', 'Rape', 'Kidnapping', 'Property', 'Fraud'],
-                datasets: [{
-                    label: 'Crime Rate',
-                    data: [2300, 1000, 1000, 624, 500, 431, 430],
-=======
-                labels: ['accident non-fatal', 'Theft', 'CrPc', 'Cases of hurd', 'Missing persion'],
-                datasets: [{
-                    label: 'Crime Rate',
-                    data: [6500, 6000,5600 , 4900, 3200, 2500,],
->>>>>>> 05c955ee44f22a691fee7db77f7b7b4176354dd4
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(201, 203, 207, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
         });
     </script>
 </body>
