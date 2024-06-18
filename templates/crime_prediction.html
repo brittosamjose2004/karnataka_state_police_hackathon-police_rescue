@@ -138,15 +138,28 @@
             list-style: none;
             padding: 0;
         }
-         .sidebar .btn-back {
-            background-color: #FF4747;
-            border: none;
-            width: 100%;
-            margin-bottom: 20px;
-        }
 
         .forecast ul li {
             margin: 5px 0;
+        }
+
+        .image-container {
+            padding: 20px;
+            border-radius: 8px;
+            box-sizing: border-box;
+            width: 100%;
+            height: 300px; /* Reduced height */
+            margin-bottom: 20px;
+            background-color: #1E1E1E;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
         }
 
         canvas {
@@ -157,7 +170,6 @@
 <body>
     <div class="container">
         <div class="sidebar">
-            <button class="btn-back" onclick="goBack()">Back</button>
             <h2>Dashboard</h2>
             <h1 class="mt-4">Crime Prediction for 2025 and 2026</h1>
 
@@ -174,8 +186,9 @@
             </form>
 
             <!-- New chart added below the form -->
-            <div class="chart-container">
-                <canvas id="newChart"></canvas>
+                <div class="image-container">
+                    <img src="{{ url_for('static', filename='images/treemap_chart.png') }}" alt="Treemap Chart">
+                 
             </div>
         </div>
         <div class="main-content">
@@ -207,11 +220,8 @@
                     {% endif %}
                 </div>
                 
-                <div class="chart">
-                    <canvas id="waterfallChart"></canvas>
-                </div>
-                <div class="chart">
-                    <canvas id="radarChart"></canvas>
+                <div class="image-container">
+                   <img src="{{ url_for('static', filename='images/wordcloud.png') }}" alt="Treemap Chart">
                 </div>
                 <div class="live-data">
                     <canvas id="liveDataChart"></canvas>
@@ -229,11 +239,9 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-chart-treemap@1.0.1/dist/chartjs-chart-treemap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script>
-         function goBack() {
-            window.location.href = 'https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/index';
-        }
         document.addEventListener("DOMContentLoaded", function() {
             // Bar Chart
             const barCtx = document.getElementById('barChart').getContext('2d');
@@ -309,70 +317,40 @@
                 }
             });
 
-            // Waterfall Chart
-            const waterfallCtx = document.getElementById('waterfallChart').getContext('2d');
-            new Chart(waterfallCtx, {
-                type: 'bar',
+            // Treemap Chart
+            const treemapCtx = document.getElementById('treemapChart').getContext('2d');
+            new Chart(treemapCtx, {
+                type: 'treemap',
                 data: {
-                    labels: ["Bengaluru City","Bengaluru Dist","Tumakuru","Shivamogga","Mandya"],
                     datasets: [{
-                        label: 'Top 5 Most Occured Districts',
-                        data: [430754,65032,62520,62047,60219],
-                        backgroundColor: 'rgba(75, 192, 192, 0.8)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
+                        label: 'Treemap Chart',
+                        data: [
+                            {x: 'Cyber Crime', y: 2300},
+                            {x: 'Violent Crime', y: 1000},
+                            {x: 'Sexual Harassment', y: 1000},
+                            {x: 'Rape', y: 624},
+                            {x: 'Kidnapping', y: 500},
+                            {x: 'Property', y: 431},
+                            {x: 'Fraud', y: 430}
+                        ],
+                        backgroundColor: function(context) {
+                            const value = context.dataset.data[context.dataIndex].y;
+                            if (value > 2000) return 'rgba(255, 71, 71, 0.8)';
+                            if (value > 1000) return 'rgba(255, 206, 86, 0.8)';
+                            return 'rgba(75, 192, 192, 0.8)';
+                        }
                     }]
                 },
                 options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
                     plugins: {
-                        datalabels: {
-                            display: true,
-                            color: 'black',
-                            align: 'top'
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true
+                        legend: {
+                            display: false
                         }
                     }
                 }
             });
-
-            // Radar Chart
-            const radarCtx = document.getElementById('radarChart').getContext('2d');
-            new Chart(radarCtx, {
-                type: 'doughnut',
-            data: {
-                labels: ['Bengalurucity', 'Mandya', 'Shivamogga', 'Bagalkot', 'Tumakuru', 'Mysuru'],
-                datasets: [{
-                    label: '',
-                    data: [60,50 , 40, 30, 35, 10],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)',
-                        'rgba(201, 203, 207, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
 
             // New Chart
             const newChartCtx = document.getElementById('newChart').getContext('2d');
