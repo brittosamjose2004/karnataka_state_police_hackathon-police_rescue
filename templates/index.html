@@ -17,9 +17,12 @@
             overflow: hidden; /* Prevents scrollbars */
         }
 
-        .container {
+       .container {
             position: relative;
             height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         nav {
@@ -28,31 +31,29 @@
             align-items: center;
             padding: 10px 20px;
             background-color: rgba(0, 0, 0, 0.7);
-            position: absolute;
+            position: relative;
             width: 100%;
-            top: 0;
-            left: 0;
             z-index: 1000;
         }
 
-        .nav-left {
+       .nav-left {
             display: flex;
             align-items: center;
         }
 
-        .nav-left img {
+       .nav-left img {
             width: 50px;
             height: auto;
             margin-right: 10px;
         }
 
-        .nav-right {
+       .nav-right {
             display: flex;
             align-items: center;
-            margin-left: auto;
+            justify-content: flex-end; /* Aligns items to the right */
         }
 
-        .nav-right ul {
+       .nav-right ul {
             list-style: none;
             margin: 0;
             padding: 0;
@@ -60,19 +61,19 @@
             align-items: center;
         }
 
-        .nav-right ul li {
+       .nav-right ul li {
             position: relative;
             margin-left: 20px;
         }
 
-        .nav-right ul li a {
+       .nav-right ul li a {
             text-decoration: none;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
         }
 
-        .dropdown {
+       .dropdown {
             display: none;
             position: absolute;
             top: 30px;
@@ -83,81 +84,80 @@
             z-index: 1001;
         }
 
-        .dropdown a {
+       .dropdown a {
             display: block;
             padding: 10px;
             color: #fff;
             text-decoration: none;
         }
 
-        .dropdown a:hover {
+       .dropdown a:hover {
             background-color: #333;
         }
 
-        .hero {
-            position: absolute;
-            top: 0;
-            left: 0;
+       .hero {
+            position: relative;
             width: 100%;
-            height: 100%;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             background: url("{{ url_for('static', filename='videos/crime.avif') }}") no-repeat center center fixed;
+            background-size: cover;
         }
 
-        .hero-text {
+       .hero-text {
             position: relative;
             color: #ff0000;
             z-index: 1001;
         }
 
-        .hero-text img {
+       .hero-text img {
             width: 100px;
             height: auto;
             margin-bottom: 20px;
         }
 
-        .hero-text h1 {
-            font-size: 6vw;
+       .hero-text h1 {
+            font-size: 4.8vw;
             margin: 0;
         }
 
-        .hero-text h3 {
+       .hero-text h3 {
             font-size: 3vw;
             margin: 10px 0;
         }
 
-        .hero-text p {
+       .hero-text p {
             font-size: 2vw;
         }
 
         @media (max-width: 768px) {
-            .nav-right ul {
+           .nav-right ul {
                 flex-direction: column;
                 align-items: flex-start;
             }
 
-            .nav-right ul li {
+           .nav-right ul li {
                 margin-left: 0;
                 margin-top: 10px;
             }
 
-            .dropdown {
+           .dropdown {
                 position: static;
             }
 
-            .hero-text h1 {
+           .hero-text h1 {
                 font-size: 8vw;
             }
 
-            .hero-text h3 {
+           .hero-text h3 {
                 font-size: 4vw;
             }
 
-            .hero-text p {
+           .hero-text p {
                 font-size: 3vw;
             }
         }
@@ -174,28 +174,20 @@
                     <li>
                         <a href="#" class="toggle-dropdown">Prediction</a>
                         <div class="dropdown">
-                            
-<<<<<<< HEAD
-                            <a href="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/crime-prediction">Crime Prediction</a>
-                            <a href="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/future-crime-forecast">Future Crime Prediction</a>
-                            <a href="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/cluster">Crime Solution</a>
-                            <a href="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/predict">Behavior Prediction</a>
-=======
                             <a href="http://127.0.0.1:5000/crime-prediction">Crime Prediction</a>
                             <a href="http://127.0.0.1:5000/future-crime-forecast">Future Crime Prediction</a>
-                            <a href="http://127.0.0.1:5000/cluster">Crime Solution</a>
+                                                        <a href="http://127.0.0.1:5000/cluster">Crime Solution</a>
                             <a href="http://127.0.0.1:5000/predict">Behavior Prediction</a>
->>>>>>> 05c955ee44f22a691fee7db77f7b7b4176354dd4
                         </div>
                     </li>
                     <li>
                         <a href="#" class="toggle-dropdown">Hotspot</a>
                         <div class="dropdown">
-                            <a href="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/heat-map">Heat-map</a>
-                            <a href="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/crime-marker">Crime-marker</a>
+                            <a href="http://127.0.0.1:5000//heat-map">Heat-map</a>
+                            <a href="http://127.0.0.1:5000//crime-marker">Crime-marker</a>
                         </div>
                     </li>
-                    <li><a href="https://super-umbrella-pj7j4xpp49v9c6g4g-5000.app.github.dev/">Login</a></li>
+                    <li><a href="http://127.0.0.1:5000/">Login</a></li>
                 </ul>
             </div>
         </nav>
@@ -218,7 +210,7 @@
                     const dropdown = this.nextElementSibling;
                     const isOpen = dropdown.style.display === 'block';
                     document.querySelectorAll('.dropdown').forEach(drop => drop.style.display = 'none');
-                    dropdown.style.display = isOpen ? 'none' : 'block';
+                    dropdown.style.display = isOpen? 'none' : 'block';
                 });
             });
 
